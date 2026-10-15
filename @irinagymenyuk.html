@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ірина Гуменюк — Візитка | ДБФМК</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Caveat (рукописний), Comfortaa (заголовки) та Inter (основний) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Comfortaa:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            lilac: {
+              50: '#FAF5FF',
+              100: '#F3E8FF',
+              200: '#E9D5FF',
+              300: '#D8B4FE',
+              400: '#C084FC',
+              500: '#A855F7',
+              600: '#9333EA',
+              700: '#7E22CE',
+              800: '#6B21A8',
+              900: '#581C87',
+            },
+            craft: {
+              bg: '#EDE4F8',
+              paper: '#FFFDF9',
+              alt: '#FBF8F1',
+              border: '#E8E0D5',
+              subtle: '#D6C7E8'
+            }
+          },
+          fontFamily: {
+            hand: ['"Caveat"', 'cursive'],
+            sans: ['"Inter"', 'sans-serif'],
+            display: ['"Comfortaa"', 'cursive'],
+          },
+          boxShadow: {
+            'polaroid': '0 8px 20px -3px rgba(50, 20, 70, 0.08), 0 3px 6px -2px rgba(0, 0, 0, 0.04)',
+            'paper': '0 4px 15px -2px rgba(110, 80, 140, 0.09), 0 1px 3px rgba(0,0,0,0.04)',
+            'paper-lg': '0 15px 35px -5px rgba(90, 40, 130, 0.16), 0 5px 15px rgba(0,0,0,0.05)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Бузковий фон із візерунком фактурного крафтового паперу */
+    body {
+      background-color: #ECE3F7;
+      background-image: 
+        radial-gradient(#D6BCFA 0.85px, transparent 0.85px),
+        linear-gradient(135deg, #EFE6FA 0%, #E5D7F6 50%, #DCBEF2 100%);
+      background-size: 22px 22px, 100% 100%;
+      background-attachment: fixed;
+      font-family: 'Inter', sans-serif;
+      color: #332442;
+    }
+
+    /* Напівпрозорий декоративний скотч (Washi Tape) */
+    .washi-tape-lilac {
+      background: rgba(216, 180, 254, 0.82);
+      backdrop-filter: blur(2px);
+      box-shadow: 0 1px 4px rgba(80, 40, 110, 0.18);
+      border-left: 3px dashed rgba(147, 51, 234, 0.35);
+      border-right: 3px dashed rgba(147, 51, 234, 0.35);
+    }
+
+    .washi-tape-mint {
+      background: rgba(197, 235, 222, 0.85);
+      backdrop-filter: blur(2px);
+      box-shadow: 0 1px 4px rgba(40, 80, 60, 0.15);
+      border-left: 3px dashed rgba(16, 185, 129, 0.35);
+      border-right: 3px dashed rgba(16, 185, 129, 0.35);
+    }
+
+    .washi-tape-peach {
+      background: rgba(254, 215, 215, 0.85);
+      backdrop-filter: blur(2px);
+      box-shadow: 0 1px 4px rgba(180, 80, 80, 0.15);
+      border-left: 3px dashed rgba(244, 114, 182, 0.35);
+      border-right: 3px dashed rgba(244, 114, 182, 0.35);
+    }
+
+    /* Ефект загнутого паперового куточка */
+    .paper-curl {
+      position: relative;
+    }
+    .paper-curl::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 0 20px 20px;
+      border-color: transparent transparent #ECE3F7 transparent;
+      box-shadow: -2px -2px 3px rgba(0,0,0,0.06);
+    }
+
+    /* Картки Polaroid з чистим згладжуванням без квадратних ореолів */
+    .polaroid-card {
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transform-style: preserve-3d;
+    }
+    .polaroid-card:hover {
+      transform: translateY(-6px) scale(1.02) rotate(0deg) !important;
+      z-index: 30 !important;
+      box-shadow: 0 16px 28px -4px rgba(50, 20, 70, 0.14) !important;
+    }
+
+    /* Канцелярська скріпка */
+    .paper-clip {
+      width: 14px;
+      height: 42px;
+      border: 3.5px solid #94A3B8;
+      border-radius: 12px;
+      position: absolute;
+      opacity: 0.85;
+      box-shadow: 1px 2px 3px rgba(0,0,0,0.15);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen text-slate-800 antialiased selection:bg-purple-200 selection:text-purple-900 pb-12">
+
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-[#EDE4F8]/85 border-b border-purple-200/70 transition-all py-3.5 px-4 sm:px-8">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      
+      <!-- Лого / Ім'я -->
+      <a href="#hero" class="flex items-center gap-2.5 group">
+        <span class="w-9 h-9 rounded-full bg-purple-200 border border-purple-300 flex items-center justify-center text-purple-700 shadow-sm group-hover:rotate-12 transition-transform">
+          <i data-lucide="stethoscope" class="w-4 h-4"></i>
+        </span>
+        <div class="leading-none">
+          <span class="font-display font-bold text-lg text-purple-950 block">Ірина Гуменюк</span>
+          <span class="text-[10px] tracking-wider text-purple-700 uppercase font-medium">Особиста сторінка</span>
+        </div>
+      </a>
+
+      <!-- Навігація по розділах -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-purple-900">
+        <a href="#about" class="hover:text-purple-600 transition-colors">Про мене</a>
+        <a href="#gallery" class="hover:text-purple-600 transition-colors">Світлини</a>
+        <a href="#education" class="hover:text-purple-600 transition-colors">Освіта & Досвід</a>
+        <a href="#achievements" class="hover:text-purple-600 transition-colors">Заслуги</a>
+        <a href="#contacts" class="hover:text-purple-600 transition-colors">Контакти</a>
+      </nav>
+
+      <!-- Кнопка швидкого переходу до контактів -->
+      <a href="#contacts" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-purple-700 hover:bg-purple-800 active:scale-95 text-white text-xs sm:text-sm font-semibold shadow-md shadow-purple-600/20 transition-all">
+        <i data-lucide="send" class="w-3.5 h-3.5"></i>
+        <span>Зв'язатися</span>
+      </a>
+
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8 space-y-12">
+
+    <!-- ГОЛОВНА СЕКЦІЯ: Крафтовий аркуш з титульним фото -->
+    <section id="hero" class="relative">
+      
+      <!-- Канцелярська скріпка вгорі -->
+      <div class="paper-clip -top-4 left-10 hidden sm:block z-30"></div>
+
+      <div class="bg-[#FFFDF9] rounded-2xl border border-stone-200 shadow-paper-lg p-6 sm:p-10 relative overflow-hidden paper-curl">
+        
+        <!-- Верхня наліпка скотчу -->
+        <div class="washi-tape-lilac absolute -top-3 left-1/2 -translate-x-1/2 w-36 h-7 rotate-1 z-10 rounded-sm"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          
+          <!-- Ліва колонка: Головна Polaroid-картка -->
+          <div class="md:col-span-5 flex flex-col items-center">
+            <div class="relative polaroid-card rotate-[-2deg]">
+              
+              <!-- Скотч на фото -->
+              <div class="washi-tape-mint absolute -top-3 -left-3 w-28 h-6 -rotate-6 z-20 rounded-sm"></div>
+
+              <!-- Рамка Polaroid -->
+              <div class="bg-white p-3 pb-5 rounded-2xl shadow-polaroid w-64 sm:w-72">
+                <div class="w-full aspect-[3/4] rounded-xl bg-purple-50 overflow-hidden relative shadow-inner">
+                  <!-- Головне фото Ірини (виступ/презентація) -->
+                  <img 
+                    src="./main.jpg" 
+                    alt="Ірина Гуменюк" 
+                    class="w-full h-full object-cover object-center"
+                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80';"
+                  >
+                </div>
+                <div class="mt-3.5 flex items-center justify-between px-1">
+                  <span class="font-hand text-2xl text-stone-800 font-bold">Ірина Гуменюк ✨</span>
+                  <span class="text-[11px] font-mono tracking-wider bg-purple-100 text-purple-900 px-2 py-0.5 rounded font-semibold">Дніпро</span>
+                </div>
+              </div>
+
+            </div>
+
+            <p class="font-hand text-lg text-purple-900 mt-3 text-center">
+              «Медицина, лідерство та великі мрії»
+            </p>
+          </div>
+
+          <!-- Права колонка: Інформація про Ірину -->
+          <div id="about" class="md:col-span-7 space-y-4">
+            
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 text-purple-900 text-xs font-semibold tracking-wide border border-purple-200">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              Студентка 4-го курсу • Очільниця самоврядування
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl font-display font-bold text-slate-900 tracking-tight leading-snug">
+              Привіт! Я — <span class="text-purple-700 underline decoration-wavy decoration-purple-300">Ірина Гуменюк</span>
+            </h1>
+
+            <p class="text-slate-700 leading-relaxed sm:text-base text-sm">
+              Студентка випускного курсу Дніпровського базового фахового медичного коледжу. 
+              Багаторічна очільниця студентського самоврядування, активна спікерка та ведуча 
+              коледжних і міських подій, ініціаторка волонтерських зборів і майбутній відданий медичний фахівець.
+            </p>
+
+            <!-- Крафтові міні-стікери з ключовими фактами -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+              
+              <div class="p-3 rounded-xl bg-purple-50 border border-purple-200 hover:bg-purple-100/70 transition-colors">
+                <div class="text-purple-700 mb-1"><i data-lucide="graduation-cap" class="w-5 h-5"></i></div>
+                <div class="font-bold text-slate-900 text-sm">4-й курс</div>
+                <div class="text-xs text-slate-600">ДБФМК, Дніпро</div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-purple-50 border border-purple-200 hover:bg-purple-100/70 transition-colors">
+                <div class="text-purple-700 mb-1"><i data-lucide="award" class="w-5 h-5"></i></div>
+                <div class="font-bold text-slate-900 text-sm">Голова ради</div>
+                <div class="text-xs text-slate-600">Кілька років поспіль</div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-purple-50 border border-purple-200 hover:bg-purple-100/70 transition-colors col-span-2 sm:col-span-1">
+                <div class="text-purple-700 mb-1"><i data-lucide="mic" class="w-5 h-5"></i></div>
+                <div class="font-bold text-slate-900 text-sm">Ведуча & Спікер</div>
+                <div class="text-xs text-slate-600">Коледжні та міські заходи</div>
+              </div>
+
+            </div>
+
+            <!-- Швидкі дії -->
+            <div class="pt-2 flex flex-wrap items-center gap-3">
+              <a href="#contacts" class="px-5 py-2.5 rounded-xl bg-purple-700 hover:bg-purple-800 active:scale-95 text-white font-semibold text-sm shadow-md shadow-purple-600/25 transition-all inline-flex items-center gap-2">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+                Написати записку
+              </a>
+              <a href="#gallery" class="px-4 py-2.5 rounded-xl bg-white hover:bg-purple-50 border border-purple-300 active:scale-95 text-purple-900 font-semibold text-sm transition-all inline-flex items-center gap-2 shadow-sm">
+                <i data-lucide="camera" class="w-4 h-4 text-purple-600"></i>
+                Переглянути світлини
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="space-y-6">
+      
+      <div class="flex items-center justify-between border-b border-purple-300 pb-3">
+        <div class="flex items-center gap-2.5">
+          <span class="p-2 rounded-xl bg-white shadow-sm border border-purple-200 text-purple-700">
+            <i data-lucide="camera" class="w-5 h-5"></i>
+          </span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-display font-bold text-purple-950">Світлини & Моменти з життя</h2>
+            <p class="text-xs text-purple-800/80">Медична практика, коледжні заходи та теплі спогади</p>
+          </div>
+        </div>
+        <span class="font-hand text-xl text-purple-700 hidden sm:inline-block">Polaroid стіна 📸</span>
+      </div>
+
+      <!-- Сітка Polaroid-знімків -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-2">
+        
+        <!-- Фото 1: Медична практика в коледжі -->
+        <div class="polaroid-card rotate-[-2deg] flex flex-col items-center">
+          <div class="washi-tape-mint w-24 h-5 -mb-2.5 z-20 rounded-sm -rotate-2"></div>
+          <div class="bg-white p-3 pb-4 rounded-2xl shadow-polaroid w-full max-w-[270px]">
+            <div class="w-full aspect-[3/4] rounded-xl bg-stone-100 overflow-hidden relative shadow-inner">
+              <img 
+                src="./iryna_med_practice.jpg" 
+                alt="Медична практика" 
+                class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=700&q=80';"
+              >
+            </div>
+            <div class="mt-3 text-center">
+              <p class="font-hand text-xl text-stone-800 font-bold leading-tight">Медична практика 🩺</p>
+              <p class="text-[11px] text-purple-700 font-medium">ДБФМК • Клінічні протоколи</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Фото 2: Виступ / Заходи / Представництво -->
+        <div class="polaroid-card rotate-[1.5deg] flex flex-col items-center">
+          <div class="washi-tape-lilac w-24 h-5 -mb-2.5 z-20 rounded-sm rotate-2"></div>
+          <div class="bg-white p-3 pb-4 rounded-2xl shadow-polaroid w-full max-w-[270px]">
+            <div class="w-full aspect-[3/4] rounded-xl bg-stone-100 overflow-hidden relative shadow-inner">
+              <img 
+                src="./iryna_stage.jpg" 
+                alt="Виступ на заході" 
+                class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=700&q=80';"
+              >
+            </div>
+            <div class="mt-3 text-center">
+              <p class="font-hand text-xl text-stone-800 font-bold leading-tight">Офіційні заходи 🎤</p>
+              <p class="text-[11px] text-purple-700 font-medium">Спікерка • Молодіжні форуми</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Фото 3: Захід сонця над Дніпром -->
+        <div class="polaroid-card rotate-[-1.5deg] flex flex-col items-center">
+          <div class="washi-tape-peach w-24 h-5 -mb-2.5 z-20 rounded-sm -rotate-3"></div>
+          <div class="bg-white p-3 pb-4 rounded-2xl shadow-polaroid w-full max-w-[270px]">
+            <div class="w-full aspect-[3/4] rounded-xl bg-stone-100 overflow-hidden relative shadow-inner">
+              <img 
+                src="./iryna_river.jpg" 
+                alt="Набережна міста Дніпро" 
+                class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80';"
+              >
+            </div>
+            <div class="mt-3 text-center">
+              <p class="font-hand text-xl text-stone-800 font-bold leading-tight">Рідне місто Дніпро 🌅</p>
+              <p class="text-[11px] text-purple-700 font-medium">Теплі вечори & Натхнення</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Фото 4: Стильний вечірній образ -->
+        <div class="polaroid-card rotate-[2deg] flex flex-col items-center">
+          <div class="washi-tape-lilac w-24 h-5 -mb-2.5 z-20 rounded-sm rotate-1"></div>
+          <div class="bg-white p-3 pb-4 rounded-2xl shadow-polaroid w-full max-w-[270px]">
+            <div class="w-full aspect-[3/4] rounded-xl bg-stone-100 overflow-hidden relative shadow-inner">
+              <img 
+                src="./iryna_evening.jpg" 
+                alt="Вечірній затишок" 
+                class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=80';"
+              >
+            </div>
+            <div class="mt-3 text-center">
+              <p class="font-hand text-xl text-stone-800 font-bold leading-tight">Стиль & Затишок ✨</p>
+              <p class="text-[11px] text-purple-700 font-medium">Енергія та нові плани</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="education" class="space-y-6">
+      
+      <div class="flex items-center justify-between border-b border-purple-300 pb-3">
+        <div class="flex items-center gap-2.5">
+          <span class="p-2 rounded-xl bg-white shadow-sm border border-purple-200 text-purple-700">
+            <i data-lucide="book-open" class="w-5 h-5"></i>
+          </span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-display font-bold text-purple-950">Освіта & Студентське Самоврядування</h2>
+            <p class="text-xs text-purple-800/80">Медичний фах, студентське лідерство та щоденна відповідальність</p>
+          </div>
+        </div>
+        <span class="font-hand text-xl text-purple-700 hidden sm:inline-block">Сторінка 01 ✍️</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Картка: Навчання в коледжі -->
+        <div class="bg-[#FFFDF9] rounded-2xl border border-stone-200 shadow-paper p-6 relative paper-curl hover:shadow-paper-lg transition-shadow">
+          <div class="washi-tape-lilac absolute -top-2.5 right-8 w-24 h-5 rotate-2 rounded-sm"></div>
+          
+          <div class="flex items-start gap-3.5">
+            <div class="w-12 h-12 rounded-xl bg-purple-100 border border-purple-200 text-purple-700 flex items-center justify-center shrink-0">
+              <i data-lucide="cross" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900">4-й курс • Випускниця</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-1">Дніпровський базовий фаховий медичний коледж</h3>
+              <p class="text-xs font-medium text-purple-700 mt-0.5">КЗВО «ДБФМК» ДОР</p>
+            </div>
+          </div>
+
+          <div class="mt-4 text-sm text-slate-700 space-y-2 border-t border-dashed border-stone-200 pt-3">
+            <p class="flex items-start gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-600 mt-0.5 shrink-0"></i>
+              <span>Опанування сучасних клінічних дисциплін, фармакології та практичних протоколів допомоги.</span>
+            </p>
+            <p class="flex items-start gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-600 mt-0.5 shrink-0"></i>
+              <span>Клінічна практика у відділеннях провідних лікарень міста Дніпро.</span>
+            </p>
+            <p class="flex items-start gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-600 mt-0.5 shrink-0"></i>
+              <span>Сумлінне ставлення до навчання, участь у науково-практичних семінарах та круглих столах.</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Картка: Студентське самоврядування -->
+        <div class="bg-[#FFFDF9] rounded-2xl border border-stone-200 shadow-paper p-6 relative paper-curl hover:shadow-paper-lg transition-shadow">
+          <div class="washi-tape-mint absolute -top-2.5 left-8 w-24 h-5 -rotate-2 rounded-sm"></div>
+
+          <div class="flex items-start gap-3.5">
+            <div class="w-12 h-12 rounded-xl bg-purple-100 border border-purple-200 text-purple-700 flex items-center justify-center shrink-0">
+              <i data-lucide="users" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-900">Декілька років підряд</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-1">Голова студентського самоврядування</h3>
+              <p class="text-xs font-medium text-purple-700 mt-0.5">Очільниця студентської ради коледжу</p>
+            </div>
+          </div>
+
+          <div class="mt-4 text-sm text-slate-700 space-y-2 border-t border-dashed border-stone-200 pt-3">
+            <p class="flex items-start gap-2">
+              <i data-lucide="star" class="w-4 h-4 text-amber-500 mt-0.5 shrink-0"></i>
+              <span>Захист прав та інтересів студентів, тісна комунікація з адміністрацією коледжу.</span>
+            </p>
+            <p class="flex items-start gap-2">
+              <i data-lucide="star" class="w-4 h-4 text-amber-500 mt-0.5 shrink-0"></i>
+              <span>Організація благодійних ярмарків, донорських днів та зборів на підтримку ЗСУ.</span>
+            </p>
+            <p class="flex items-start gap-2">
+              <i data-lucide="star" class="w-4 h-4 text-amber-500 mt-0.5 shrink-0"></i>
+              <span>Координація студентських ініціатив, святкових концертів та випускних церемоній.</span>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="achievements" class="space-y-6">
+      
+      <div class="flex items-center justify-between border-b border-purple-300 pb-3">
+        <div class="flex items-center gap-2.5">
+          <span class="p-2 rounded-xl bg-white shadow-sm border border-purple-200 text-purple-700">
+            <i data-lucide="trophy" class="w-5 h-5"></i>
+          </span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-display font-bold text-purple-950">Заслуги, Заходи та Виступи</h2>
+            <p class="text-xs text-purple-800/80">Особисті відзнаки, публічні виступи та активна діяльність</p>
+          </div>
+        </div>
+        <span class="font-hand text-xl text-purple-700 hidden sm:inline-block">Скарбничка успіхів 🏆</span>
+      </div>
+
+      <!-- Сітка карток заслуг (легко доповнюється прямо в коді) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- Заслуга 1 -->
+        <div class="bg-[#FFFDF9] rounded-2xl border border-stone-200 shadow-paper p-5 relative paper-curl hover:shadow-paper-lg transition-all group">
+          <div class="washi-tape-lilac absolute -top-2 left-6 w-20 h-4 rotate-1 rounded-sm"></div>
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-800 border border-purple-200">
+              Самоврядування
+            </span>
+            <span class="text-xs font-mono text-purple-700 font-semibold">Багаторічне головування</span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-base leading-snug group-hover:text-purple-700 transition-colors">
+            Очільниця студентської ради коледжу
+          </h4>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Переобрана лідеркою студентського парламенту на кілька термінів. Керування секторами, організація масштабних заходів та представлення студентів перед дирекцією.
+          </p>
+          <div class="mt-4 pt-3 border-t border-dashed border-stone-200 flex items-center justify-between text-xs text-purple-600 font-hand text-base">
+            <span class="flex items-center gap-1"><i data-lucide="check-check" class="w-4 h-4"></i> Головне досягнення</span>
+          </div>
+        </div>
+
+        <!-- Заслуга 2 -->
+        <div class="bg-[#FFFDF9] rounded-2xl border border-stone-200 shadow-paper p-5 relative paper-curl hover:shadow-paper-lg transition-all group">
+          <div class="washi-tape-mint absolute -top-2 right-6 w-20 h-4 -rotate-1 rounded-sm"></div>
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
+              Виступи & Сцена
+            </span>
+            <span class="text-xs font-mono text-emerald-800 font-semibold">4-й курс</span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-base leading-snug group-hover:text-purple-700 transition-colors">
+            Ведуча урочистих і фахових подій
+          </h4>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Постійна ведуча Дня медичного працівника, урочистих лінійок ДБФМК, днів відкритих дверей та круглих столів з охорони здоров'я.
+          </p>
+          <div class="mt-4 pt-3 border-t border-dashed border-stone-200 flex items-center justify-between text-xs text-emerald-700 font-hand text-base">
+            <span class="flex items-center gap-1"><i data-lucide="mic" class="w-4 h-4"></i> Спікерка коледжу</span>
+          </div>
+        </div>
+
+        <!-- Заслуга 3 -->
+        <div class="bg-[#FFFDF9] rounded-2xl border border-stone-200 shadow-paper p-5 relative paper-curl hover:shadow-paper-lg transition-all group">
+          <div class="washi-tape-peach absolute -top-2 left-6 w-20 h-4 2 rounded-sm"></div>
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 border border-rose-200">
+              Волонтерство
+            </span>
+            <span class="text-xs font-mono text-rose-800 font-semibold">Регулярно</span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-base leading-snug group-hover:text-purple-700 transition-colors">
+            Благодійні ініціативи та донорство
+          </h4>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Організація зборів коштів на медикаменти та спорядження для ЗСУ, координація днів донорства крові серед студентів і допомога шпиталям Дніпра.
+          </p>
+          <div class="mt-4 pt-3 border-t border-dashed border-stone-200 flex items-center justify-between text-xs text-rose-700 font-hand text-base">
+            <span class="flex items-center gap-1"><i data-lucide="heart" class="w-4 h-4"></i> Добрі справи</span>
+          </div>
+        </div>
+
+        <!-- Заслуга 4 -->
+        <div class="bg-[#FFFDF9] rounded-2xl border border-stone-200 shadow-paper p-5 relative paper-curl hover:shadow-paper-lg transition-all group">
+          <div class="washi-tape-lilac absolute -top-2 right-6 w-20 h-4 -rotate-2 rounded-sm"></div>
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 border border-blue-200">
+              Місто Дніпро
+            </span>
+            <span class="text-xs font-mono text-blue-800 font-semibold">Молодіжна політика</span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-base leading-snug group-hover:text-purple-700 transition-colors">
+            Участь у молодіжних форумах міста
+          </h4>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Представництво студентської спільноти медиків на міських молодіжних з'їздах, панельних дискусіях та заходах з розвитку громадянського суспільства.
+          </p>
+          <div class="mt-4 pt-3 border-t border-dashed border-stone-200 flex items-center justify-between text-xs text-blue-700 font-hand text-base">
+            <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-4 h-4"></i> Голос молоді</span>
+          </div>
+        </div>
+
+        <!-- Заслуга 5 -->
+        <div class="bg-[#FFFDF9] rounded-2xl border border-stone-200 shadow-paper p-5 relative paper-curl hover:shadow-paper-lg transition-all group">
+          <div class="washi-tape-mint absolute -top-2 left-6 w-20 h-4 1 rounded-sm"></div>
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-200">
+              Відзнака
+            </span>
+            <span class="text-xs font-mono text-amber-800 font-semibold">Подяка</span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-base leading-snug group-hover:text-purple-700 transition-colors">
+            Подяки за громадську діяльність
+          </h4>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Отримання грамот і подяк від керівництва коледжу та молодіжних організацій за особистий внесок у розвиток студентського самоврядування.
+          </p>
+          <div class="mt-4 pt-3 border-t border-dashed border-stone-200 flex items-center justify-between text-xs text-amber-700 font-hand text-base">
+            <span class="flex items-center gap-1"><i data-lucide="award" class="w-4 h-4"></i> Визнання</span>
+          </div>
+        </div>
+
+        <!-- Плейсхолдер під наступну заслугу (для швидкого додавання в майбутньому) -->
+        <div class="bg-purple-50/60 rounded-2xl border-2 border-dashed border-purple-300 p-5 flex flex-col justify-center items-center text-center hover:bg-purple-100/50 transition-colors">
+          <div class="w-10 h-10 rounded-full bg-purple-200 text-purple-700 flex items-center justify-center mb-2">
+            <i data-lucide="plus" class="w-5 h-5"></i>
+          </div>
+          <h4 class="font-bold text-purple-950 text-sm">Місце для нової перемоги</h4>
+          <p class="text-xs text-purple-700/80 mt-1 max-w-[200px]">
+            Тут буде додано наступну конференцію, диплом чи нову ініціативу Ірини
+          </p>
+          <span class="font-hand text-purple-600 text-base mt-2">Далі буде... ✨</span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="contacts" class="space-y-6">
+      
+      <div class="flex items-center justify-between border-b border-purple-300 pb-3">
+        <div class="flex items-center gap-2.5">
+          <span class="p-2 rounded-xl bg-white shadow-sm border border-purple-200 text-purple-700">
+            <i data-lucide="phone-call" class="w-5 h-5"></i>
+          </span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-display font-bold text-purple-950">Контактна інформація</h2>
+            <p class="text-xs text-purple-800/80">Відкрита до співпраці, волонтерських ініціатив та спілкування</p>
+          </div>
+        </div>
+        <span class="font-hand text-xl text-purple-700 hidden sm:inline-block">Завжди на зв'язку 💌</span>
+      </div>
+
+      <!-- Картки контактів -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+        <!-- Номер телефону -->
+        <div class="bg-[#FFFDF9] rounded-2xl border border-stone-200 shadow-paper p-5 relative group hover:border-purple-300 transition-all">
+          <div class="washi-tape-lilac absolute -top-2 left-6 w-16 h-4 rotate-1 rounded-sm"></div>
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-9 h-9 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center">
+              <i data-lucide="phone" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <p class="text-[11px] text-slate-500 font-medium">Для дзвінків</p>
+              <h4 class="text-sm font-bold text-slate-900">Номер телефону</h4>
+            </div>
+          </div>
+          <p id="phoneVal" class="font-mono text-sm text-purple-900 font-bold py-1">
+            +380 (95) 531-86-58
+          </p>
+          <div class="mt-2.5 flex items-center gap-2 pt-2 border-t border-stone-100">
+            <button onclick="copyText('phoneVal', 'Номер телефону скопійовано!')" class="text-xs text-purple-700 hover:text-purple-900 font-semibold flex items-center gap-1 active:scale-95 transition-transform">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Скопіювати
+            </button>
+          </div>
+        </div>
+
+        <!-- Telegram -->
+        <div class="bg-[#FFFDF9] rounded-2xl border border-stone-200 shadow-paper p-5 relative group hover:border-purple-300 transition-all">
+          <div class="washi-tape-mint absolute -top-2 right-6 w-16 h-4 -rotate-1 rounded-sm"></div>
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <p class="text-[11px] text-slate-500 font-medium">Telegram</p>
+              <h4 class="text-sm font-bold text-slate-900">Месенджери</h4>
+            </div>
+          </div>
+          <p id="tgVal" class="font-mono text-sm text-purple-900 font-bold py-1">
+            @irinagymenyuk
+          </p>
+          <div class="mt-2.5 flex items-center gap-2 pt-2 border-t border-stone-100">
+            <button onclick="copyText('tgVal', 'Telegram скопійовано!')" class="text-xs text-purple-700 hover:text-purple-900 font-semibold flex items-center gap-1 active:scale-95 transition-transform">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Скопіювати
+            </button>
+          </div>
+        </div>
+
+        <!-- Електронна пошта -->
+        <div class="bg-[#FFFDF9] rounded-2xl border border-stone-200 shadow-paper p-5 relative group hover:border-purple-300 transition-all">
+          <div class="washi-tape-peach absolute -top-2 left-8 w-16 h-4 2 rounded-sm"></div>
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-9 h-9 rounded-lg bg-pink-100 text-pink-700 flex items-center justify-center">
+              <i data-lucide="mail" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <p class="text-[11px] text-slate-500 font-medium">Електронна пошта</p>
+              <h4 class="text-sm font-bold text-slate-900">Email</h4>
+            </div>
+          </div>
+          <p id="mailVal" class="text-sm text-purple-900 font-bold truncate py-1">
+            irinagumenyuk882@gmail.com
+          </p>
+          <div class="mt-2.5 flex items-center gap-2 pt-2 border-t border-stone-100">
+            <button onclick="copyText('mailVal', 'Email скопійовано!')" class="text-xs text-purple-700 hover:text-purple-900 font-semibold flex items-center gap-1 active:scale-95 transition-transform">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Скопіювати
+            </button>
+          </div>
+        </div>
+
+        <!-- Локація -->
+        <div class="bg-[#FFFDF9] rounded-2xl border border-stone-200 shadow-paper p-5 relative group hover:border-purple-300 transition-all">
+          <div class="washi-tape-lilac absolute -top-2 right-8 w-16 h-4 rotate-2 rounded-sm"></div>
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-9 h-9 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center">
+              <i data-lucide="map-pin" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <p class="text-[11px] text-slate-500 font-medium">Місто навчання</p>
+              <h4 class="text-sm font-bold text-slate-900">Локація</h4>
+            </div>
+          </div>
+          <p class="text-sm text-purple-900 font-bold py-1">
+            м. Дніпро, Україна
+          </p>
+          <div class="mt-2.5 flex items-center gap-2 pt-2 border-t border-stone-100">
+            <span class="text-xs text-slate-500 flex items-center gap-1">
+              <i data-lucide="building-2" class="w-3.5 h-3.5 text-purple-600"></i> ДБФМК
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Паперова записка / Форма зв'язку -->
+      <div class="bg-[#FFFDF9] rounded-2xl border border-stone-200 shadow-paper p-6 relative paper-curl">
+        <div class="washi-tape-lilac absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-6 rotate-1 rounded-sm"></div>
+
+        <div class="max-w-2xl mx-auto space-y-4">
+          <div class="text-center space-y-1">
+            <h3 class="font-hand text-3xl text-purple-800 font-bold">Надіслати записку для Ірини ✉️</h3>
+            <p class="text-xs text-slate-600">Лист буде сформовано та надіслано напряму на контактну пошту</p>
+          </div>
+          
+          <form onsubmit="handleSendMail(event)" class="space-y-3">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <input type="text" id="senderName" required placeholder="Ваше ім'я або організація" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-purple-500 bg-white text-sm shadow-inner">
+              <input type="text" id="senderContact" required placeholder="Ваш телефон або Telegram" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-purple-500 bg-white text-sm shadow-inner">
+            </div>
+            <textarea id="senderMessage" rows="3" required placeholder="Ваше повідомлення, пропозиція виступу чи проєкт..." class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-purple-500 bg-white text-sm resize-none shadow-inner"></textarea>
+            <div class="flex items-center justify-between pt-1">
+              <span class="text-[11px] text-purple-700/80 font-medium">Швидка відправка без реєстрації</span>
+              <button type="submit" class="px-6 py-2.5 rounded-xl bg-purple-700 hover:bg-purple-800 active:scale-95 text-white font-semibold text-sm shadow-md shadow-purple-600/25 transition-all inline-flex items-center gap-2">
+                <i data-lucide="send" class="w-4 h-4"></i>
+                Надіслати записку
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="mt-14 max-w-5xl mx-auto px-4 text-center">
+    <div class="py-6 border-t border-purple-300/80 flex flex-col sm:flex-row items-center justify-between text-xs text-purple-900/80 gap-3">
+      <div class="flex items-center gap-2 font-medium">
+        <span class="w-2.5 h-2.5 rounded-full bg-purple-500 animate-pulse"></span>
+        <span>Особиста сторінка • м. Дніпро</span>
+      </div>
+      
+      <!-- Запитаний копірайт автора із сердечком -->
+      <a href="https://github.com/IceL1ghtning" target="_blank" rel="noopener noreferrer" class="font-bold text-sm text-purple-800 hover:text-purple-600 transition-all inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100 hover:bg-purple-200/80 border border-purple-200 shadow-sm active:scale-95">
+        <i data-lucide="github" class="w-4 h-4 text-purple-700"></i>
+        <span>By @IceL1ghtning</span>
+        <span class="text-xs">💜</span>
+      </a>
+
+      <div class="font-hand text-lg text-purple-800 font-bold">
+        Зроблено з душею 🌸
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 max-w-sm">
+    <div class="bg-white border-2 border-purple-300 rounded-2xl shadow-paper-lg p-3.5 flex items-center gap-3">
+      <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center shrink-0">
+        <i data-lucide="check" class="w-4 h-4"></i>
+      </div>
+      <div>
+        <p id="toastMessage" class="text-xs font-bold text-slate-800">Дію виконано!</p>
+        <p class="text-[11px] text-purple-700">Повідомлення скопійовано</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Ініціалізація Lucide іконок
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+
+    // Копіювання в буфер обміну
+    function copyText(elementId, message) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      const text = el.innerText.trim();
+
+      const temp = document.createElement('textarea');
+      temp.value = text;
+      document.body.appendChild(temp);
+      temp.select();
+      try {
+        document.execCommand('copy');
+        showToast(message || 'Скопійовано!');
+      } catch (err) {
+        console.error(err);
+      }
+      document.body.removeChild(temp);
+    }
+
+    // Відправлення листа через mailto (прямо на пошту без потреби у сторонньому бекенді)
+    function handleSendMail(event) {
+      event.preventDefault();
+      const name = document.getElementById('senderName').value;
+      const contact = document.getElementById('senderContact').value;
+      const msg = document.getElementById('senderMessage').value;
+
+      const recipient = "iryna.humeniuk@example.com";
+      const subject = encodeURIComponent(`Записка з візитки від: ${name}`);
+      const body = encodeURIComponent(
+        `Ім'я / Організація: ${name}\n` +
+        `Контакт для зв'язку: ${contact}\n\n` +
+        `Повідомлення:\n${msg}\n\n` +
+        `---\nНадіслано з особистої візитки Ірини Гуменюк`
+      );
+
+      // Відкриваємо поштовий клієнт користувача із заповненими даними
+      window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+      
+      showToast(`Дякуємо, ${name}! Поштовий клієнт відкрито для відправки ✉️`);
+      event.target.reset();
+    }
+
+    // Спливаючі сповіщення
+    let toastTimer;
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const msgEl = document.getElementById('toastMessage');
+      msgEl.innerText = message;
+
+      toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
